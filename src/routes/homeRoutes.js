@@ -1,5 +1,5 @@
 import { Router } from "express";
-import home from "../controllers/Home.js";
+import home from "../controllers/HomeController.js";
 const router = new Router();
 
 router.get("/", home.index);

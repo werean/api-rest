@@ -6,7 +6,7 @@ module.exports = {
      *
      * Example:
      * */
-    await queryInterface.createTable("students", {
+    await queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -15,26 +15,15 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      surname: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false, //se allowNull for true, pode ser nulo o valor.
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true, //não pode repetir o valor.
       },
-      age: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      height: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      weight: {
-        type: Sequelize.FLOAT,
+      password_hash: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -54,7 +43,7 @@ module.exports = {
      *
      * Example:
      * */
-    await queryInterface.dropTable("students");
+    await queryInterface.dropTable("users");
   },
 };
 //tudo que esta em migrations está relacionado a base de dados.
