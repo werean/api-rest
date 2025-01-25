@@ -3,6 +3,10 @@ import userController from "../controllers/UserController.js";
 const router = new Router();
 
 router.post("/", userController.store);
+router.get("/", userController.index);
+router.get("/:id", userController.show);
+router.put("/:id", userController.update);
+router.delete("/:id", userController.delete);
 export default router;
 /*store/create => cria um novo usuário => POST
 index => lista todos os usuários => GET
