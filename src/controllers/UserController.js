@@ -12,6 +12,8 @@ class UserController {
     // sempre que for usar async envolver o bloco por um trycatch para caso tenha erro
     try {
       const users = await User.findAll(); // isso vai retonar todos os usuários na base de dados
+      console.log("USER ID",req.userId)
+      console.log("USER EMAIL",req.userEmail)
       return res.json(users);
     } catch (e) {
       return res.json(e);
