@@ -3,10 +3,10 @@ import userController from "../controllers/UserController.js";
 import loginRequired from "../middlewares/loginRequired.js";
 const router = new Router();
 
-router.get("/", userController.index); //não é necessário
-router.get("/", userController.show); //não é necessario
+//router.get("/", userController.index); //não é necessário
+//router.get("/", userController.show); //não é necessario
 
-router.post("/", userController.store);
+router.post("/",loginRequired, userController.store); // coloquei que login é requirido para criar o usuario para que ninguem tenha acesso no momento
 router.put("/", loginRequired, userController.update);
 router.delete("/:id", loginRequired, userController.delete);
 export default router;

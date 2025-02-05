@@ -74,8 +74,11 @@ export default class Student extends Model {
         sequelize, // Passa a instância do Sequelize
       }
     ); // Fecha a chamada do método init da classe pai
-    return this; // Retorna a própria classe Student
+    return this;
   }
-} // Fecha a definição da classe Student
+  static associate(models) {
+    this.hasMany(models.Photo, { foreignKey: "student_id" }); // aqui estou criando a relação entre Students e Photos. Antes a relação era apenas de Photos para Students. hasMany é para quando eu quero exibir todas as fotos associadas a um aluno, por exemplo. Se eu quisesse mostrar apenas uma eu usaria o hasOne
+  }
+}
 
 // Este arquivo define um modelo Student para ser usado com o ORM Sequelize, especificando os atributos e suas tipagens.

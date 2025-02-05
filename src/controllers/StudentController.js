@@ -1,7 +1,21 @@
 import Student from "../models/Student";
+import Photo from "../models/Photo";
+
 class StudentController {
   async index(req, res) {
-    const getStudents = await Student.findAll();
+    const getStudents = await Student.findAll({
+      //apenas o find all mostraria tudo, porém com attributes eu estou filtrando para exibir apenas o que eu quero.
+      attributes: ["id", "name", "surname", "email", "age", "weight", "height"],
+      order: [
+        ["id", "DESC"],
+        [Photo, "id", "DESC"],
+      ],
+      include: {
+        //aqui estou incluindo também no findAll o model de Photos, porém, Photos estava associado a Students e não Students associado a Photos
+        model: Photo,
+        attributes: ["id", "originalname", "filename", "student_id", "url"],
+      },
+    });
     res.json(getStudents);
   }
   async store(req, res) {
@@ -22,7 +36,26 @@ class StudentController {
           errors: ["Faltando ID"],
         });
       }
-      const student = await Student.findByPk(id);
+      const student = await Student.findByPk(id, {
+        // essa seria a forma de mostrar o photos no show também
+        attributes: [
+          "id",
+          "name",
+          "surname",
+          "email",
+          "age",
+          "weight",
+          "height",
+        ],
+        order: [
+          ["id", "DESC"],
+          [Photo, "id", "DESC"],
+        ],
+        include: {
+          model: Photo,
+          attributes: ["id", "originalname", "filename", "student_id", "url"],
+        },
+      });
       if (!student) {
         return res.status(400).json({
           errors: ["Esse aluno não existe."],
