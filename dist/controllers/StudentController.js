@@ -1,16 +1,23 @@
-import Student from "../models/Student";
-import Photo from "../models/Photo";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _Student = require("../models/Student");
+var _Student2 = _interopRequireDefault(_Student);
+var _Photo = require("../models/Photo");
+var _Photo2 = _interopRequireDefault(_Photo);
 
 class StudentController {
   async index(req, res) {
-    const getStudents = await Student.findAll({
+    const getStudents = await _Student2.default.findAll({
       attributes: ["id", "name", "surname", "email", "age", "weight", "height"],
       order: [
         ["id", "DESC"],
-        [Photo, "id", "DESC"],
+        [_Photo2.default, "id", "DESC"],
       ],
       include: {
-        model: Photo,
+        model: _Photo2.default,
         attributes: ["id", "originalname", "filename", "student_id", "url"],
       },
     });
@@ -18,7 +25,7 @@ class StudentController {
   }
   async store(req, res) {
     try {
-      const student = await Student.create(req.body);
+      const student = await _Student2.default.create(req.body);
       return res.json(student);
     } catch (e) {
       return res.status(400).json({
@@ -34,7 +41,7 @@ class StudentController {
           errors: ["Faltando ID"],
         });
       }
-      const student = await Student.findByPk(id, {
+      const student = await _Student2.default.findByPk(id, {
         attributes: [
           "id",
           "name",
@@ -46,10 +53,10 @@ class StudentController {
         ],
         order: [
           ["id", "DESC"],
-          [Photo, "id", "DESC"],
+          [_Photo2.default, "id", "DESC"],
         ],
         include: {
-          model: Photo,
+          model: _Photo2.default,
           attributes: ["id", "originalname", "filename", "student_id", "url"],
         },
       });
@@ -73,7 +80,7 @@ class StudentController {
           errors: ["Faltando ID"],
         });
       }
-      const student = await Student.findByPk(id);
+      const student = await _Student2.default.findByPk(id);
       if (!student) {
         return res.status(400).json({
           errors: ["Esse aluno não existe."],
@@ -95,7 +102,7 @@ class StudentController {
           errors: ["Faltando ID"],
         });
       }
-      const student = await Student.findByPk(id);
+      const student = await _Student2.default.findByPk(id);
       if (!student) {
         return res.status(400).json({
           errors: ["Esse aluno não existe."],
@@ -110,4 +117,4 @@ class StudentController {
     }
   }
 }
-export default new StudentController();
+exports.default = new StudentController();

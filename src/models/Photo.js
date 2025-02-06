@@ -38,6 +38,6 @@ export default class Photo extends Model {
     return this;
   }
   static associate(models) {
-    this.belongsTo(models.Student, { foreignKey: "student_id" }); // Aqui está sendo definido uma relação entre as tabelas photos e students, onde cada foto pertence a um único estudante. Isso é feito adicionando uma chave estrangeira student_id na tabela photos, que referencia a tabela students.
+    this.belongsTo(models.Student, { foreignKey: "student_id" });
   }
 }

@@ -1,5 +1,5 @@
 const { resolve } = require("path");
-//const path = require("path"); isso seria a mesma coisa do exemplo a cima, porem é uma sintaxe mais simplificada
+
 module.exports = {
   config: resolve(__dirname, "src", "config", "database.js"),
   "models-path": resolve(__dirname, "src", "models"),

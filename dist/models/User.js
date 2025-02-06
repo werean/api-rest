@@ -1,12 +1,19 @@
-import Sequelize, { Model } from "sequelize";
-import bcryptjs from "bcryptjs";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _sequelize = require("sequelize");
+var _sequelize2 = _interopRequireDefault(_sequelize);
+var _bcryptjs = require("bcryptjs");
+var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
-export default class User extends Model {
+class User extends _sequelize.Model {
   static init(sequelize) {
     super.init(
       {
         name: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
           defaultValue: "",
           validate: {
             len: {
@@ -19,7 +26,7 @@ export default class User extends Model {
           },
         },
         email: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
           defaultValue: "",
           unique: {
             msg: "E-mail já cadastrado.",
@@ -31,10 +38,10 @@ export default class User extends Model {
           },
         },
         password_hash: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
         },
         password: {
-          type: Sequelize.VIRTUAL,
+          type: _sequelize2.default.VIRTUAL,
           validate: {
             len: {
               args: [6, 50],
@@ -50,13 +57,14 @@ export default class User extends Model {
 
     this.addHook("beforeSave", async (user) => {
       if (user.password) {
-        user.password_hash = await bcryptjs.hash(user.password, 8);
+        user.password_hash = await _bcryptjs2.default.hash(user.password, 8);
       }
     });
 
     return this;
   }
   passwordIsValid(password) {
-    return bcryptjs.compare(password, this.password_hash);
+    return _bcryptjs2.default.compare(password, this.password_hash);
   }
 }
+exports.default = User;

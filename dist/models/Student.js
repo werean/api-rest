@@ -1,10 +1,16 @@
-import Sequelize, { Model } from "sequelize";
-export default class Student extends Model {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+var _sequelize = require("sequelize");
+var _sequelize2 = _interopRequireDefault(_sequelize);
+class Student extends _sequelize.Model {
   static init(sequelize) {
     super.init(
       {
         name: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
           defaultValue: "",
           allowNull: false,
           validate: {
@@ -15,7 +21,7 @@ export default class Student extends Model {
           },
         },
         surname: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
           defaultValue: "",
           allowNull: true,
           validate: {
@@ -26,7 +32,7 @@ export default class Student extends Model {
           },
         },
         email: {
-          type: Sequelize.STRING,
+          type: _sequelize2.default.STRING,
           allowNull: false,
           unique: {
             msg: "E-mail já existe.",
@@ -38,7 +44,7 @@ export default class Student extends Model {
           },
         },
         age: {
-          type: Sequelize.INTEGER,
+          type: _sequelize2.default.INTEGER,
           allowNull: false,
           validate: {
             isInt: {
@@ -47,7 +53,7 @@ export default class Student extends Model {
           },
         },
         height: {
-          type: Sequelize.FLOAT,
+          type: _sequelize2.default.FLOAT,
           allowNull: false,
           validate: {
             isFloat: {
@@ -56,7 +62,7 @@ export default class Student extends Model {
           },
         },
         weight: {
-          type: Sequelize.FLOAT,
+          type: _sequelize2.default.FLOAT,
           allowNull: false,
           validate: {
             isFloat: {
@@ -75,3 +81,4 @@ export default class Student extends Model {
     this.hasMany(models.Photo, { foreignKey: "student_id" });
   }
 }
+exports.default = Student;

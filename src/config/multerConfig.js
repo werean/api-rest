@@ -1,5 +1,5 @@
 import multer from "multer";
-import { extname, resolve } from "path"; //extname retorna o nome da extensão do arquivo como por exemplo .png .txt
+import { extname, resolve } from "path";
 
 const random = () => Math.floor(Math.random() * 10000 + 10000);
 

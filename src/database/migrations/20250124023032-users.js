@@ -1,11 +1,6 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * */
     await queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
@@ -15,12 +10,12 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false, //se allowNull for true, pode ser nulo o valor.
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true, //não pode repetir o valor.
+        unique: true,
       },
       password_hash: {
         type: Sequelize.STRING,
@@ -38,12 +33,6 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * */
     await queryInterface.dropTable("users");
   },
 };
-//tudo que esta em migrations está relacionado a base de dados.
