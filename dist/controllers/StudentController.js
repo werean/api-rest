@@ -1,12 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-var _Student = require("../models/Student");
-var _Student2 = _interopRequireDefault(_Student);
-var _Photo = require("../models/Photo");
-var _Photo2 = _interopRequireDefault(_Photo);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Student = require('../models/Student'); var _Student2 = _interopRequireDefault(_Student);
+var _Photo = require('../models/Photo'); var _Photo2 = _interopRequireDefault(_Photo);
 
 class StudentController {
   async index(req, res) {
@@ -117,4 +110,4 @@ class StudentController {
     }
   }
 }
-exports.default = new StudentController();
+exports. default = new StudentController();
